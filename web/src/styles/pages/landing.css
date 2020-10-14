@@ -19,7 +19,7 @@
     background: url('../../images/landing.svg') no-repeat 80% center;
 }
 #page-landing .content-wrapper main {
-    max-width: 350px
+    max-width: 350px;
 }
 #page-landing .content-wrapper main h1 {
     font-size: 76px;
