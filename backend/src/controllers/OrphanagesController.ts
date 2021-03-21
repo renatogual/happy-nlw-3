@@ -32,33 +32,12 @@ export default {
 
   //Cria um orfanato
   async create(req: Request, res: Response) {
-    const {
-      name,
-      latitude,
-      longitude,
-      about,
-      instructions,
-      opening_hours,
-      open_on_weekends,
-    } = req.body;
-
     const orphanagesRepository = getRepository(Orphanage);
 
     const requestImages = req.files as Express.Multer.File[]; //Forçando tipagem
     const images = requestImages.map((image) => {
       return { path: image.filename };
     });
-
-    const data = {
-      name,
-      latitude,
-      longitude,
-      about,
-      instructions,
-      opening_hours,
-      open_on_weekends,
-      images,
-    };
 
     // Validação dos campos
     const schema = Yup.object().shape({
@@ -76,11 +55,19 @@ export default {
       ),
     });
 
-    await schema.validate(data, {
-      abortEarly: false,
-    });
+    let { open_on_weekends } = req.body;
+    open_on_weekends = open_on_weekends.toLowerCase() === "true";
 
-    const orphanage = orphanagesRepository.create(data);
+    await schema.validate(
+      { ...req.body, open_on_weekends, images },
+      { abortEarly: false }
+    );
+
+    const orphanage = orphanagesRepository.create({
+      ...req.body,
+      open_on_weekends,
+      images,
+    });
 
     await orphanagesRepository.save(orphanage);
 
