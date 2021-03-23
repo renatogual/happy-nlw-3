@@ -17,7 +17,7 @@ interface Orphanage {
   about: string;
   instructions: string;
   opening_hours: number;
-  open_on_weekends: boolean;
+  open_on_weekends: string;
   images: Array<{
     id: number;
     url: string;
@@ -66,7 +66,7 @@ export default function Orphanage() {
           </div>
 
           <div className="orphanage-details-content">
-            <h1>Lar das meninas</h1>
+            <h1>{orphanage?.name}</h1>
             <p>{orphanage?.about}</p>
 
             <div className="map-container">
