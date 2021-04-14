@@ -6,6 +6,8 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { Feather, FontAwesome } from "@expo/vector-icons";
@@ -44,6 +46,12 @@ export default function OrphanageDetails() {
       setOrphanage(res.data);
     });
   }, [params.id]);
+
+  function handleOpenGoogleMaps() {
+    Linking.openURL(
+      `https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude}, ${orphanage?.longitude}`
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -88,9 +96,12 @@ export default function OrphanageDetails() {
             />
           </MapView>
 
-          <View style={styles.routesContainer}>
+          <TouchableOpacity
+            onPress={handleOpenGoogleMaps}
+            style={styles.routesContainer}
+          >
             <Text style={styles.routesText}>Ver rotas no Google Maps</Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.separator} />
