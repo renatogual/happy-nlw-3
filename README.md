@@ -29,7 +29,7 @@ Além disto é bom ter um editor para trabalhar com o código como o [VSCode](ht
     $ npm install
 
     # Inicie a api
-    npm run dev
+    $ npm run dev
 
     # Volte e entre no diretório web onde contém o Frontend da aplicação
     $ cd ../web
@@ -38,7 +38,19 @@ Além disto é bom ter um editor para trabalhar com o código como o [VSCode](ht
     $ npm install
 
     # Inicie o website
-    npm start
+    $ npm start
+    
+    # Para rodar o app mobile entre no diretório
+    $ cd ../mobile
+    
+    # Instale o Expo-cli globalmente
+    $ npm install --global expo-cli
+    
+    # Inicie o app
+    $ expo start
+    
+    # Inicie o app no celular
+    Leia o QR code na página do Expo com seu celular, baixe o app do expo e então conseguirá visualizar a aplicação rodando
 ```
 
 ---
